@@ -9,6 +9,8 @@ jobs:
     steps:
       # display the event that triggered the action
       - run : echo "The job was triggered by a ${{ github.event_name }} event."
+        name : "Display event name"
       
       # Runner information
-      - run : echo "The job is running on os ${{ runner.os }}"
+      - name : "Runner OS"
+        run : echo "The job is running on os ${{ runner.os }}"
