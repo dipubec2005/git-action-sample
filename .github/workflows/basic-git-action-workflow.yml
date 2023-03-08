@@ -14,3 +14,29 @@ jobs:
       # Runner information
       - name : "Runner OS"
         run : echo "The job is running on os ${{ runner.os }}"
+        
+      # Information about the repository and branch
+      - run: echo "The name of your branch is ${{ github.ref }} and your repository is ${{ github.repository }}."
+      
+      - name : "checkout the code"
+        uses : actions/checkout@v3.3.0
+        
+      - run: echo "Branch ${{ github.ref }} of repository ${{ github.repository }} has been cloned to the runner"
+      
+      - run: echo "Your repository has been copied to the path ${{ github.workspace }} on the runner."
+      
+      - name: conditional step when event name is pull request
+        if : ${{ github.event_name == 'pull request' }}
+        run : echo "This event is a pull request"
+        
+      - name: "List files in the repository"
+        run : ls ${{ github.workspace }}
+        
+      - name : "setup .net on runner"
+        uses : actions/setup-dotnet@v1
+        with :
+          dotnet-version: '3.x'
+          
+      - name : "Display dotnet version"
+        run : |
+              dotnet --version
