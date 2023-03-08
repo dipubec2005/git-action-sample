@@ -1,0 +1,14 @@
+name: github actions demo
+on: push
+
+jobs:
+  Example-Actions-Job:
+    name: Exploring github actions
+    runs-on : ubuntu-latest
+    
+    steps:
+      # display the event that triggered the action
+      - run : echo "The job was triggered by a ${{ github.event_name }} event."
+      
+      # Runner information
+      - run : echo "The job is running on os ${{ runner.os }}"
